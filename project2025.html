@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffccd5;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            margin: 0;
+        }
+        #buttons {
+            text-align: center;
+            position: relative;
+        }
+        button {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            margin: 10px;
+            position: relative;
+            z-index: 10;
+        }
+        button:hover {
+            background-color: #e63950;
+        }
+        #yesBtn {
+            transition: all 0.5s ease;
+        }
+        #message {
+            display: none;
+            font-size: 32px;
+            font-weight: bold;
+            color: #d6336c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will You Be My Valentine? ❤️</h1>
+    <div id="buttons">
+        <button id="yesBtn" onclick="finalYes()">Yes</button>
+        <button id="sureBtn" onclick="increaseYesSize()">Really sure??</button>
+    </div>
+    <p id="message">Knew you would say yes! 😊</p>
+
+    <script>
+        let yesBtn = document.getElementById('yesBtn');
+        let sureBtn = document.getElementById('sureBtn');
+        let message = document.getElementById('message');
+        let clickCount = 0;
+        let scaleFactor = 1;
+
+        function increaseYesSize() {
+            clickCount++;
+            scaleFactor *= 1.5;
+            yesBtn.style.transform = `scale(${scaleFactor})`;
+
+            // Когда кнопка Yes становится очень большой
+            if (clickCount >= 3) {
+                sureBtn.style.display = "none"; // Убираем кнопку "Really sure??"
+            }
+        }
+
+        function finalYes() {
+            if (clickCount >= 3) {
+                yesBtn.style.display = "none";
+                message.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
